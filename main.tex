@@ -1,0 +1,114 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{subfigure}
+% Setup of packages used
+\usepackage[onehalfspacing]{setspace}		% One half spacing
+\newlength{\stockheight}					% To prevent hyperref warning
+\setlength{\stockheight}{\paperheight}		% define \stockheigh
+\usepackage{hyperref}					% Hyperlinks on pdf (Should be called before Geometry)
+\usepackage[a4paper, 					% Page Layout
+                     %showframe,				% This shows the frame
+                     twoside, includehead,
+                     footskip=7mm, headsep=6mm, headheight=4.8mm,
+                     marginparsep=2mm, marginparwidth=22mm,
+                     top=25mm, bottom=25mm, inner=30mm, outer=25mm]{geometry}
+\usepackage{sansmathfonts}				% Sans Serif equations
+\usepackage[T1]{fontenc}					% Output font encoding for internationa
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+
+\usepackage[utf8]{inputenc}			% Encoding of files: utf8
+\renewcommand*\familydefault{\sfdefault} 	% Sans Serif as default font
+\usepackage{titlesec}					% Redefine chapter and chapter* titles
+\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt]}]
+
+% This is used to include the page number on footer within the same margins
+%\titleformat{\chapter}[display]{\huge \bfseries}{\vspace{-0.5cm}\hfill \chaptertitlename\ \thechapter}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
+%\titleformat{name=\chapter,numberless}[display]{\huge \bfseries}{\vspace{-0.5cm}}{0pt}{\hfill}[{\titlerule[1.2pt] \enlargethispage{-0.75\baselineskip}}]
+\usepackage{float}
+\usepackage{fancyhdr}					% Package to redefine headers
+\fancyhf{}								% No header nor footer
+\fancyhead[L]{\thepage}				% Left even and right odd Page Number
+\pagestyle{fancy}
+
+\fancypagestyle{plain}{					% To change the footer on chapter and chapter*
+	\fancyhf{}							% No header nor footer
+%	\fancyfoot[C]{\vspace{-11mm}\thepage}	% Footer with number displaced
+	\renewcommand{\headrulewidth}{0pt}	% No line on header
+	\renewcommand{\footrulewidth}{0pt}		% No line on footer
+}
+
+\RequirePackage{caption} 				% Caption customization
+\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=1cm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor=blue,    
+}
+
+% Setup the language and its properties (choose only one)
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}}
+%\usepackage[english]{babel}
+%\addto\captionsenglish{\renewcommand{\contentsname}{Contents}}
+
+
+%\graphicspath{ {figs/} }					% Use this if custom figures folder is needed
+
+\usepackage{amssymb,amsmath}
+\usepackage{tikz}						% Required for title page
+\usetikzlibrary{babel}						% Required to make TikZ works with babel
+\usepackage[section]{placeins}				% To flush floats before new section
+\usepackage{longtable}					% Used by List of Symbols and friends
+\usepackage{array}						% Needed by longtable package
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{biblatex}
+\usepackage{amssymb}
+\usepackage{todonotes}
+ \usepackage{multirow}
+\addbibresource{referencias.lib}
+
+\numberwithin{figure}{section}  %para numerar por seccion las figuras
+\numberwithin{equation}{section}  %para numerar por seccion las ecuaciones
+\numberwithin{table}{section}  %para numerar por seccion las tablas
+
+% Macros provided
+\def\fecha{\ifcase\month\or
+  Enero\or Febrero\or Marzo\or Abril\or Mayo\or Junio\or
+  Julio\or Agosto\or Septiembre\or Octubre\or Noviembre\or Diciembre\fi \space\number\year
+
+}
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\group}[1]{\gdef\@group{#1}}
+\newcommand*{\profesor}[1]{\gdef\@profesor{#1}}
+
+
+\setlength\parindent{0pt}
+\begin{document}
+\input{preamble/title_page.tex}
+\setcounter{tocdepth}{2}
+
+\input{sections/ej1.tex}
+\input{sections/ej2.tex}
+\input{sections/ej3.tex}
+\input{sections/ej4.tex}
+\input{sections/ej5.tex}
+\input{sections/ej6.tex}
+\input{sections/ej7.tex}
+\input{sections/ej8.tex}
+
+\end{document}

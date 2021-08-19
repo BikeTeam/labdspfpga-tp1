@@ -1,0 +1,55 @@
+\section{Ejercicio 6}
+
+En el presente ejercicio se ejecutó el siguiente programa.
+
+\lstinputlisting[language={[Motorola68k]Assembler}]{code/ej6.asm} 
+
+Teniendo en cuenta que los registros parten desde los siguientes estados iniciales:
+
+$$ a = \$00000000000000 $$
+$$ x = \$0c0000600000  $$
+$$ r0 = \$0000 $$
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Instrucción} & \textbf{Cambios}                                                                                       & \textbf{Comentarios}                                                                                                                                                            \\ \hline
+-                  & \begin{tabular}[c]{@{}c@{}}a = \$00000000000000\\ x = \$0c0000600000\\ r0 = \$0000\end{tabular} & Carga inicial de valores                                                                                                                                                        \\ \hline
+add x1,a         & a = \$000c0000000000                                                                                  & \begin{tabular}[c]{@{}c@{}}se suma a con el valor almacenado en x1 \\ y se guarda el resultado de la suma en a.\end{tabular}    \\ \hline
+\begin{tabular}[c]{@{}c@{}}rep \#\$a \\ norm r0,a         \end{tabular}    & a = \$00600000000000                                                                                   & \begin{tabular}[c]{@{}c@{}}En esta instrucción se realiza en un loop 10 veces \\ la siguiente instruccion en este caso la instrucción norm \\ para ver qué ocurre dentro del loop referirse a la tabla \ref{ej6_loop_table} \end{tabular}                                                                       \\ \hline
+add x0,a         & a = \$00c00000000000                                                                                   & \begin{tabular}[c]{@{}c@{}}se suma x0 al registro a, de esta manera lo que termina \\sucediendo es un shifteo a derecha debido a que se \\ terminan  sumando 2 números iguales. Luego de la suma \\ los bits E, U y Z valen como se indica en la tabla \ref{ej6_EUZ}.\end{tabular} \\ \hline
+\end{tabular}
+\caption{Paso a paso de las instrucciones ejecutadas.}
+\label{tab:ej6_inst_table}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Iteración}  & \textbf{E} & \textbf{U} & \textbf{Z} & \textbf{Acción} & \textbf{Valor del acumulador a} \\ \hline
+1   &  0   & 1  &  0  & ASL & \$00 180000 000000        \\ \hline
+2   &  0   & 1  &  0  & ASL & \$00 300000 000000        \\ \hline
+3   &  0   & 1  &  0  & ASL & \$00 600000 000000        \\ \hline
+4   &  0   & 0  &  0  & NOP & \$00 600000 000000        \\ \hline
+5   &  0   & 0  &  0  & NOP & \$00 600000 000000        \\ \hline
+\end{tabular}
+\caption{Pasos internos del Loop, luego del paso 5 se repiten las filas hasta la iteración numero 10}
+\label{ej6_loop_table}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{E} & \textbf{U} & \textbf{Z} \\ \hline
+1                 & 1       & 0     \\ \hline
+\end{tabular}
+\caption{Valores de los bits E, U y Z al finalizar la ejecución.}
+\label{ej6_EUZ}
+\end{table}
+
+
